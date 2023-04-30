@@ -33,10 +33,9 @@ steps:
   volumes:
   - name: 'vol1'
     path: '/myawesomevolume'
-  args: ['tar', '-czvf', 'artifacts.tar.gz', 'app', 'requirements.txt', '/myawesomevolume/buildlog.log']
   waitFor: ['fetch-build-log']
   id: 'create-artifacts-zip'
-
+logsBucket: 'gs://logs-codebuild-$PROJECT_ID/$BUILD_ID' #'gs://mfa-project-374417_cloudbuild/$BUILD_ID'
 options:
   logging: GCS_ONLY
 images:
