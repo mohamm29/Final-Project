@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def final_project():
    target = os.environ.get('TARGET', 'HELLO Everyone !!')
-   return 'Welcome to Our Finalist Project, {}!'.format(target)
+   return 'Welcome to Our Final Sem Project, {}!'.format(target)
 
 
 if __name__ == "__main__":
