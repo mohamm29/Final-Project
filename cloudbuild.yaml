@@ -11,11 +11,11 @@ steps:
   args:
   - 'run'
   - 'deploy'
-  - 'myawesomeapp'
+  - 'finalproject'
   - '--image'
   - 'gcr.io/$PROJECT_ID/myapp:$COMMIT_SHA'
   - '--region'
-  - 'us-east4'
+  - 'us-central1'
   - '--platform'
   - 'managed'
   - '--allow-unauthenticated'
@@ -24,15 +24,15 @@ steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
   volumes:
   - name: 'vol1'
-    path: '/myawesomevolume'
+    path: '/finalproject'
   entrypoint: '/bin/bash'
-  args: ['-c', 'gcloud builds log $BUILD_ID > /myawesomevolume/buildlog.log']
+  args: ['-c', 'gcloud builds log $BUILD_ID > /finalproject/buildlog.log']
   waitFor: ['deploy-to-cloud-run']
   id: 'fetch-build-log'
 - name: 'bash'
   volumes:
   - name: 'vol1'
-    path: '/myawesomevolume'
+    path: '/finalproject'
   args: ['tar', '-czvf', 'artifacts.tar.gz', 'app', 'requirements.txt', '/myawesomevolume/buildlog.log']
   waitFor: ['fetch-build-log']
   id: 'create-artifacts-zip'
